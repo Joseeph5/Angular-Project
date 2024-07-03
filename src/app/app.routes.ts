@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegistrationComponent } from './pages/auth/registration/registration.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RoomListingComponent } from './pages/room/room-listing/room-listing.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'browse-all-rooms', component: RoomListingComponent },
 ];
