@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import moment from 'moment';
 import { CommonModule } from '@angular/common';
-import { BookingService } from '../../../services/booking.service';
+import { BookingService } from '../../services/booking.service';
 
 interface BookingInfo {
   id: string;
