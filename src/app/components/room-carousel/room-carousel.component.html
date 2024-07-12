@@ -1,5 +1,9 @@
 <section class="bg-light mb-5 mt-5 shadow">
-  <a routerLink="/browse-all-rooms" class="hotel-color text-center">
+  <a
+    *ngIf="!errorMessage"
+    routerLink="/browse-all-rooms"
+    class="hotel-color text-center"
+  >
     Browse all rooms
   </a>
 
@@ -44,6 +48,6 @@
 
   <div *ngIf="isLoading" class="mt-5">Loading rooms....</div>
   <div *ngIf="errorMessage" class="text-danger mb-5 mt-5">
-    Error: {{ errorMessage }}
+    {{ errorMessage }}
   </div>
 </section>
