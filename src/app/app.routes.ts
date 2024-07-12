@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RoomListingComponent } from './pages/room/room-listing/room-listing.component';
 import { FindBookingComponent } from './pages/booking/find-booking/find-booking.component';
 import { BookRoomComponent } from './pages/booking/book-room/book-room.component';
+import { BookingSuccessComponent } from './pages/booking/booking-success/booking-success.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'browse-all-rooms', component: RoomListingComponent },
   { path: 'find-booking', component: FindBookingComponent },
   { path: 'book-room/:roomId', component: BookRoomComponent },
+  { path: 'booking-success', component: BookingSuccessComponent },
 ];
