@@ -4,6 +4,13 @@
       [data]="data"
       (filteredData)="setFilteredData($event)"
     ></app-room-filter>
+
+    <div class="row">
+      <div *ngFor="let room of filteredData; let i = index">
+        <app-room-card [room]="room"></app-room-card>
+      </div>
+    </div>
+
     <div class="d-flex align-items-center justify-content-center mb-3">
       <app-room-paginator
         [currentPage]="currentPage"
@@ -11,27 +18,5 @@
         (pageChange)="handlePageChange($event)"
       ></app-room-paginator>
     </div>
-    <!-- 
-        
-      <div class="row">
-        <app-room-card
-          *ngFor="
-            let room of filteredData | slice : startIndex : endIndex;
-            let i = index
-          "
-          [key]="room.id"
-          [room]="room"
-        ></app-room-card>
-      </div>
-  
-      <div class="row">
-        <div class="d-flex align-items-center justify-content-end">
-          <app-room-paginator
-            [currentPage]="currentPage"
-            [totalPages]="totalPages"
-            (pageChange)="handlePageChange($event)"
-          ></app-room-paginator>
-        </div>
-      </div> -->
   </div>
 </section>

@@ -2,11 +2,18 @@ import { Component } from '@angular/core';
 import { RoomService } from '../../../services/room.service';
 import { RoomFilterComponent } from '../../../components/room-filter/room-filter.component';
 import { RoomPaginatorComponent } from '../../../components/room-paginator/room-paginator.component';
+import { RoomCardComponent } from '../../../components/room-card/room-card.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-room-listing',
   standalone: true,
-  imports: [RoomFilterComponent, RoomPaginatorComponent],
+  imports: [
+    RoomFilterComponent,
+    RoomPaginatorComponent,
+    RoomCardComponent,
+    NgFor,
+  ],
   templateUrl: './room-listing.component.html',
   styleUrl: './room-listing.component.css',
 })

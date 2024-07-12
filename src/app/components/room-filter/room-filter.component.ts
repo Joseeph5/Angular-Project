@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -6,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './room-filter.component.html',
   styleUrls: ['./room-filter.component.css'],
   standalone: true,
-  imports:[FormsModule]
+  imports: [FormsModule, NgFor],
 })
 export class RoomFilterComponent {
   @Input() data: any[] = [];
