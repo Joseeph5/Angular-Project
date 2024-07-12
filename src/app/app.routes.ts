@@ -4,6 +4,7 @@ import { RegistrationComponent } from './pages/auth/registration/registration.co
 import { HomeComponent } from './pages/home/home.component';
 import { RoomListingComponent } from './pages/room/room-listing/room-listing.component';
 import { FindBookingComponent } from './pages/booking/find-booking/find-booking.component';
+import { BookRoomComponent } from './pages/booking/book-room/book-room.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'browse-all-rooms', component: RoomListingComponent },
   { path: 'find-booking', component: FindBookingComponent },
+  { path: 'book-room/:roomId', component: BookRoomComponent },
 ];

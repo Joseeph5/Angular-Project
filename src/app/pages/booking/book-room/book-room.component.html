@@ -1,0 +1,54 @@
+<div>
+  <section class="container">
+    <div class="row">
+      <div class="col-md-4 mt-5 mb-5">
+        <div *ngIf="isLoading">Loading room information...</div>
+        <div *ngIf="error">{{ error }}</div>
+        <div *ngIf="!isLoading && !error" class="room-info">
+          <img
+            [src]="roomInfo.photo"
+            alt="Room photo"
+            style="width: 100%; height: 200px"
+          />
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>Room Type:</th>
+                <td>{{ roomInfo.roomType }}</td>
+              </tr>
+              <tr>
+                <th>Price per night:</th>
+                <td>${{ roomInfo.roomPrice }}</td>
+              </tr>
+              <tr>
+                <th>Room Service:</th>
+                <td>
+                  <ul class="list-unstyled">
+                    <li><fa-icon [icon]="'wifi'"></fa-icon> Wifi</li>
+                    <li><fa-icon [icon]="'tv'"></fa-icon> Netflix Premium</li>
+                    <li><fa-icon [icon]="'utensils'"></fa-icon> Breakfast</li>
+                    <li>
+                      <fa-icon [icon]="'wine-glass-alt'"></fa-icon> Mini bar
+                      refreshment
+                    </li>
+                    <li><fa-icon [icon]="'car'"></fa-icon> Car Service</li>
+                    <li>
+                      <fa-icon [icon]="'parking'"></fa-icon> Parking Space
+                    </li>
+                    <li><fa-icon [icon]="'tshirt'"></fa-icon> Laundry</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <app-booking-form></app-booking-form>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <app-room-carousel></app-room-carousel>
+  </div>
+</div>

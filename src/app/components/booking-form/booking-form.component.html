@@ -1,0 +1,196 @@
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-body mt-5">
+        <h4 class="card-title">Reserve Room</h4>
+
+        <form [formGroup]="bookingForm" (ngSubmit)="handleSubmit()" novalidate>
+          <div class="form-group">
+            <label for="guestFullName" class="hotel-color">Fullname</label>
+            <input
+              formControlName="guestFullName"
+              type="text"
+              id="guestFullName"
+              class="form-control"
+              placeholder="Enter your fullname"
+              [ngClass]="{
+                'is-invalid':
+                  bookingForm.controls['guestFullName'].invalid &&
+                  (bookingForm.controls['guestFullName'].dirty || validated)
+              }"
+            />
+            <div
+              *ngIf="
+                bookingForm.controls['guestFullName'].invalid &&
+                (bookingForm.controls['guestFullName'].dirty || validated)
+              "
+              class="invalid-feedback"
+            >
+              Please enter your fullname.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="guestEmail" class="hotel-color">Email</label>
+            <input
+              formControlName="guestEmail"
+              type="email"
+              id="guestEmail"
+              class="form-control"
+              placeholder="Enter your email"
+              [ngClass]="{
+                'is-invalid':
+                  bookingForm.controls['guestEmail'].invalid &&
+                  (bookingForm.controls['guestEmail'].dirty || validated)
+              }"
+              [disabled]="true"
+            />
+            <div
+              *ngIf="
+                bookingForm.controls['guestEmail'].invalid &&
+                (bookingForm.controls['guestEmail'].dirty || validated)
+              "
+              class="invalid-feedback"
+            >
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <fieldset style="border: 2px">
+            <legend>Lodging Period</legend>
+            <div class="row">
+              <div class="col-6">
+                <label for="checkInDate" class="hotel-color"
+                  >Check-in date</label
+                >
+                <input
+                  formControlName="checkInDate"
+                  type="date"
+                  id="checkInDate"
+                  class="form-control"
+                  placeholder="check-in-date"
+                  [min]="minDate"
+                  [ngClass]="{
+                    'is-invalid':
+                      bookingForm.controls['checkInDate'].invalid &&
+                      (bookingForm.controls['checkInDate'].dirty || validated)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    bookingForm.controls['checkInDate'].invalid &&
+                    (bookingForm.controls['checkInDate'].dirty || validated)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please select a check in date.
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label for="checkOutDate" class="hotel-color"
+                  >Check-out date</label
+                >
+                <input
+                  formControlName="checkOutDate"
+                  type="date"
+                  id="checkOutDate"
+                  class="form-control"
+                  placeholder="check-out-date"
+                  [min]="minDate"
+                  [ngClass]="{
+                    'is-invalid':
+                      bookingForm.controls['checkOutDate'].invalid &&
+                      (bookingForm.controls['checkOutDate'].dirty || validated)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    bookingForm.controls['checkOutDate'].invalid &&
+                    (bookingForm.controls['checkOutDate'].dirty || validated)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please select a check out date.
+                </div>
+              </div>
+              <p *ngIf="errorMessage" class="error-message text-danger">
+                {{ errorMessage }}
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset style="border: 2px">
+            <legend>Number of Guest</legend>
+            <div class="row">
+              <div class="col-6">
+                <label for="numOfAdults" class="hotel-color">Adults</label>
+                <input
+                  formControlName="numOfAdults"
+                  type="number"
+                  id="numOfAdults"
+                  class="form-control"
+                  placeholder="0"
+                  min="1"
+                  [ngClass]="{
+                    'is-invalid':
+                      bookingForm.controls['numOfAdults'].invalid &&
+                      (bookingForm.controls['numOfAdults'].dirty || validated)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    bookingForm.controls['numOfAdults'].invalid &&
+                    (bookingForm.controls['numOfAdults'].dirty || validated)
+                  "
+                  class="invalid-feedback"
+                >
+                  Please select at least 1 adult.
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="numOfChildren" class="hotel-color">Children</label>
+                <input
+                  formControlName="numOfChildren"
+                  type="number"
+                  id="numOfChildren"
+                  class="form-control"
+                  placeholder="0"
+                  min="0"
+                  [ngClass]="{
+                    'is-invalid':
+                      bookingForm.controls['numOfChildren'].invalid &&
+                      (bookingForm.controls['numOfChildren'].dirty || validated)
+                  }"
+                />
+                <div
+                  *ngIf="
+                    bookingForm.controls['numOfChildren'].invalid &&
+                    (bookingForm.controls['numOfChildren'].dirty || validated)
+                  "
+                  class="invalid-feedback"
+                >
+                  Select 0 if no children.
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-group mt-2 mb-2">
+            <button type="submit" class="btn btn-hotel">Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <!-- <app-booking-summary
+          *ngIf="isSubmitted"
+          [booking]="bookingForm.value"
+          [payment]="calculatePayment()"
+          (confirm)="handleFormSubmit()"
+          [isFormValid]="validated"
+        ></app-booking-summary> -->
+    </div>
+  </div>
+</div>

@@ -27,4 +27,8 @@ export class RoomService {
       .get<any[]>(this.url + '/all-rooms')
       .pipe(map((response) => response));
   }
+
+  getRoomById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.url}/room/${id}`);
+  }
 }

@@ -10,6 +10,10 @@ export class BookingService {
 
   constructor(private http: HttpClient) {}
 
+  bookRoom(roomId: string, booking: any): Observable<any> {
+    return this.http.post(`room/${roomId}`, booking);
+  }
+
   getBookingByConfirmationCode(code: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/confirmation/${code}`);
   }
