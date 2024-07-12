@@ -23,7 +23,8 @@ export class RoomListingComponent {
   error: string | null = null;
   isLoading = false;
   currentPage = 1;
-  roomsPerPage = 6;
+  roomsPerPage = 5;
+  totalPages = 1;
 
   constructor(private roomService: RoomService) {}
 
@@ -36,6 +37,9 @@ export class RoomListingComponent {
     this.roomService.getAllRooms().subscribe({
       next: (data) => {
         this.data = data;
+        const startIndex = (this.currentPage - 1) * this.roomsPerPage;
+        const endIndex = startIndex + this.roomsPerPage;
+        this.totalPages = Math.ceil(this.data.length / this.roomsPerPage);
         this.filteredData = data;
       },
       error: (error) => {
@@ -48,19 +52,15 @@ export class RoomListingComponent {
     this.currentPage = pageNumber;
   }
 
-  get totalPages(): number {
-    return Math.ceil(this.filteredData.length / this.roomsPerPage);
-  }
-
-  get startIndex(): number {
-    return (this.currentPage - 1) * this.roomsPerPage;
-  }
-
-  get endIndex(): number {
-    return this.startIndex + this.roomsPerPage;
-  }
-
   setFilteredData(event: any) {
-    this.data = event;
+    this.totalPages = Math.ceil(event.length / this.roomsPerPage);
+    this.filteredData = event;
+  }
+
+  get paginateData() {
+    const startIndex = (this.currentPage - 1) * this.roomsPerPage;
+    const endIndex = startIndex + this.roomsPerPage;
+    const result = this.filteredData.slice(startIndex, endIndex);
+    return result;
   }
 }

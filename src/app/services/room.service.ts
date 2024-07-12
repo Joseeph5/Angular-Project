@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class RoomService {
-  private url = 'http://localhost:3000/';
+  private url = 'http://localhost:9100/rooms';
 
   constructor(private http: HttpClient) {}
 
@@ -16,13 +16,15 @@ export class RoomService {
     roomType: string
   ): Observable<any[]> {
     return this.http
-      .get<any[]>(this.url, {
+      .get<any[]>(this.url + 'all-rooms', {
         params: { checkInDate, checkOutDate, roomType },
       })
       .pipe(map((response) => response));
   }
 
   getAllRooms(): Observable<any[]> {
-    return this.http.get<any[]>(this.url).pipe(map((response) => response));
+    return this.http
+      .get<any[]>(this.url + '/all-rooms')
+      .pipe(map((response) => response));
   }
 }

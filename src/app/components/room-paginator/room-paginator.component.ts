@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-room-paginator',
@@ -11,9 +11,12 @@ import { Component, Input } from '@angular/core';
 export class RoomPaginatorComponent {
   @Input() currentPage: number = 1;
   @Input() totalPages: number = 1;
-  @Input() pageChange: Function | undefined;
-
+  @Output() pageChange = new EventEmitter<any[]>();
   getPageNumbers(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  handleSelectChange(currentPage: any) {
+    this.pageChange.emit(currentPage);
   }
 }

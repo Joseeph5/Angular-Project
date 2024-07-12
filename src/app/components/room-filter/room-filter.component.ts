@@ -21,6 +21,7 @@ export class RoomFilterComponent {
     const filteredRooms = this.data.filter((room) =>
       room.roomType.toLowerCase().includes(selectedType.toLowerCase())
     );
+
     this.filteredData.emit(filteredRooms);
   }
 

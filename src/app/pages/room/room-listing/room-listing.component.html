@@ -6,7 +6,7 @@
     ></app-room-filter>
 
     <div class="row">
-      <div *ngFor="let room of filteredData; let i = index">
+      <div *ngFor="let room of paginateData; let i = index">
         <app-room-card [room]="room"></app-room-card>
       </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="d-flex align-items-center justify-content-center mb-3">
       <app-room-paginator
         [currentPage]="currentPage"
-        [totalPages]="4"
+        [totalPages]="totalPages"
         (pageChange)="handlePageChange($event)"
       ></app-room-paginator>
     </div>

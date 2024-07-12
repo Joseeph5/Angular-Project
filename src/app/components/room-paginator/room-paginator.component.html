@@ -4,7 +4,7 @@
       <button
         class="btn btn-primary"
         [class.active]="currentPage === pageNumber"
-        (click)="pageChange?.(pageNumber)"
+        (click)="handleSelectChange(pageNumber)"
       >
         {{ pageNumber }}
       </button>
