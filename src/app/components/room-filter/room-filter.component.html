@@ -1,0 +1,17 @@
+<div class="input-group mb-3">
+  <span class="input-group-text" id="room-type-filter"
+    >Filter rooms by type</span
+  >
+  <select
+    class="form-select"
+    aria-label="room type filter"
+    [(ngModel)]="filter"
+    (ngModelChange)="handleSelectChange($event)"
+  >
+    <option value="">Select a room type to filter...</option>
+    <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+  </select>
+  <button class="btn btn-hotel" type="button" (click)="clearFilter()">
+    Clear Filter
+  </button>
+</div>

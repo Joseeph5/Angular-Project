@@ -1,1 +1,37 @@
-<p>room-listing works!</p>
+<section class="bg-light p-2 mb-5 mt-5 shadow">
+  <div class="container">
+    <app-room-filter
+      [data]="data"
+      (filteredData)="setFilteredData($event)"
+    ></app-room-filter>
+    <div class="d-flex align-items-center justify-content-end mb-3">
+      <app-room-paginator
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="handlePageChange($event)"
+      ></app-room-paginator>
+    </div>
+    <!-- 
+        
+      <div class="row">
+        <app-room-card
+          *ngFor="
+            let room of filteredData | slice : startIndex : endIndex;
+            let i = index
+          "
+          [key]="room.id"
+          [room]="room"
+        ></app-room-card>
+      </div>
+  
+      <div class="row">
+        <div class="d-flex align-items-center justify-content-end">
+          <app-room-paginator
+            [currentPage]="currentPage"
+            [totalPages]="totalPages"
+            (pageChange)="handlePageChange($event)"
+          ></app-room-paginator>
+        </div>
+      </div> -->
+  </div>
+</section>
