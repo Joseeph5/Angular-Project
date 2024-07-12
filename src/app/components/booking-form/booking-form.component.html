@@ -184,13 +184,13 @@
     </div>
 
     <div class="col-md-4">
-      <!-- <app-booking-summary
-          *ngIf="isSubmitted"
-          [booking]="bookingForm.value"
-          [payment]="calculatePayment()"
-          (confirm)="handleFormSubmit()"
-          [isFormValid]="validated"
-        ></app-booking-summary> -->
+      <app-booking-summary
+        *ngIf="isSubmitted"
+        [booking]="bookingForm.value"
+        [payment]="calculatePayment()"
+        (onConfirm)="handleFormSubmit()"
+        [isFormValid]="validated"
+      ></app-booking-summary>
     </div>
   </div>
 </div>

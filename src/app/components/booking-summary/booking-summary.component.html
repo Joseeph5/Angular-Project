@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-6"></div>
+  <div class="card card-body mt-5">
+    <h4 class="card-title hotel-color">Reservation Summary</h4>
+    <p>
+      Name: <strong>{{ booking.guestFullName }}</strong>
+    </p>
+    <p>
+      Email: <strong>{{ booking.guestEmail }}</strong>
+    </p>
+    <p>
+      Check-in Date:
+      <strong>{{ booking.checkInDate | date : "MMM d, y" }}</strong>
+    </p>
+    <p>
+      Check-out Date:
+      <strong>{{ booking.checkOutDate | date : "MMM d, y" }}</strong>
+    </p>
+    <p>
+      Number of Days Booked: <strong>{{ numberOfDays }}</strong>
+    </p>
+
+    <div>
+      <h5 class="hotel-color">Number of Guest</h5>
+      <strong>
+        Adult{{ booking.numOfAdults > 1 ? "s" : "" }}: {{ booking.numOfAdults }}
+      </strong>
+      <strong>
+        <p>Children: {{ booking.numOfChildren }}</p>
+      </strong>
+    </div>
+
+    <ng-container *ngIf="payment > 0; else errorTemplate">
+      <p>
+        Total payment: <strong>${{ payment }}</strong>
+      </p>
+
+      <ng-container
+        *ngIf="isFormValid && !isBookingConfirmed; else confirmedTemplate"
+      >
+        <button class="btn btn-success" (click)="handleConfirmBooking()">
+          <ng-container *ngIf="isProcessingPayment; else confirmText">
+            <span
+              class="spinner-border spinner-border-sm mr-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Booking Confirmed, redirecting to payment...
+          </ng-container>
+          <ng-template #confirmText>
+            Confirm Booking & proceed to payment
+          </ng-template>
+        </button>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #errorTemplate>
+      <p class="text-danger">Check-out date must be after check-in date.</p>
+    </ng-template>
+
+    <ng-template #confirmedTemplate>
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

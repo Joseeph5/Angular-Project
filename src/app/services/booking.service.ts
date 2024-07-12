@@ -11,7 +11,9 @@ export class BookingService {
   constructor(private http: HttpClient) {}
 
   bookRoom(roomId: string, booking: any): Observable<any> {
-    return this.http.post(`room/${roomId}`, booking);
+    return this.http.post(`${this.apiUrl}/room/${roomId}`, booking, {
+      responseType: 'text' as 'json',
+    });
   }
 
   getBookingByConfirmationCode(code: string): Observable<any> {

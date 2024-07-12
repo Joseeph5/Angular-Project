@@ -7,13 +7,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookingService } from '../../services/booking.service';
 import { RoomService } from '../../services/room.service';
+import { BookingSummaryComponent } from '../booking-summary/booking-summary.component';
 
 @Component({
   selector: 'app-booking-form',
   templateUrl: './booking-form.component.html',
   styleUrls: ['./booking-form.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BookingSummaryComponent,
+  ],
 })
 export class BookingFormComponent implements OnInit {
   bookingForm: FormGroup;
@@ -103,23 +109,23 @@ export class BookingFormComponent implements OnInit {
   }
 
   handleFormSubmit(): void {
-    if (this.bookingForm.valid) {
-      this.bookingService
-        .bookRoom(this.roomId, this.bookingForm.value)
-        .subscribe({
-          next: (confirmationCode: any) => {
-            this.isSubmitted = true;
-            this.router.navigate(['/booking-success'], {
-              state: { message: confirmationCode },
-            });
-          },
-          error: (error: any) => {
-            this.errorMessage = error.message;
-            this.router.navigate(['/booking-success'], {
-              state: { error: this.errorMessage },
-            });
-          },
-        });
-    }
+    this.bookingService
+      .bookRoom(this.roomId, this.bookingForm.value)
+      .subscribe({
+        next: (confirmationCode: any) => {
+          this.isSubmitted = true;
+          this.router.navigate(['/booking-success'], {
+            state: { message: confirmationCode },
+          });
+        },
+        error: (error: any) => {
+          console.log({ error });
+
+          this.errorMessage = error.message;
+          this.router.navigate(['/booking-success'], {
+            state: { message: this.errorMessage },
+          });
+        },
+      });
   }
 }
