@@ -1,0 +1,49 @@
+<section class="bg-light mb-5 mt-5 shadow">
+  <a routerLink="/browse-all-rooms" class="hotel-color text-center">
+    Browse all rooms
+  </a>
+
+  <div class="container">
+    <carousel [noPause]="true" [showIndicators]="false">
+      <ng-container *ngFor="let roomGroup of rooms; let i = index">
+        <slide>
+          <div class="row">
+            <div
+              class="col-12 col-md-6 col-lg-3 mb-4"
+              *ngFor="let room of rooms"
+            >
+              <div class="card">
+                <a [routerLink]="['/book-room', room.id]">
+                  <img
+                    [src]="room.photo"
+                    alt="Room Photo"
+                    class="card-img-top w-100"
+                    style="height: 200px"
+                  />
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title hotel-color">{{ room.roomType }}</h5>
+                  <h5 class="card-title room-price">
+                    ${{ room.roomPrice }}/night
+                  </h5>
+                  <div class="flex-shrink-0">
+                    <a
+                      [routerLink]="['/book-room', room.id]"
+                      class="btn btn-hotel btn-sm"
+                      >Book Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </slide>
+      </ng-container>
+    </carousel>
+  </div>
+
+  <div *ngIf="isLoading" class="mt-5">Loading rooms....</div>
+  <div *ngIf="errorMessage" class="text-danger mb-5 mt-5">
+    Error: {{ errorMessage }}
+  </div>
+</section>

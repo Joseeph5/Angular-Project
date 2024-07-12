@@ -1,0 +1,49 @@
+<div class="shadow mt-n5 mb-5 py-5">
+  <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-md-3">
+        <div class="form-group">
+          <label for="checkInDate">Check-in Date</label>
+          <input
+            type="text"
+            bsDatepicker
+            formControlName="checkInDate"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="form-group">
+          <label for="checkOutDate">Check-out Date</label>
+          <input
+            type="text"
+            bsDatepicker
+            formControlName="checkOutDate"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="form-group">
+          <label for="roomType">Room Type</label>
+          <input type="text" formControlName="roomType" class="form-control" />
+          <button type="submit" class="btn btn-secondary mt-2">Search</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="isLoading" class="mt-4">
+    <p>Finding available rooms....</p>
+  </div>
+
+  <div *ngIf="!isLoading && availableRooms.length > 0" class="mt-4"></div>
+
+  <div *ngIf="!isLoading && availableRooms.length === 0" class="mt-4">
+    <p>No rooms available for the selected dates and room type.</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="text-danger">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
