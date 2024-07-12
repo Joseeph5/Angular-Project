@@ -1,0 +1,28 @@
+<div class="mb-2">
+  <!-- <app-header [title]="'Our Services'"></app-header> -->
+
+  <div class="container mt-4">
+    <h4 class="text-center">
+      <span class="gap-2"> 24-Hour Front Desk </span
+      ><fa-icon [icon]="faClock" class="mx-2"></fa-icon> Services at
+      <span class="hotel-color"> My Hotel</span>
+    </h4>
+  </div>
+  <hr />
+
+  <div class="container mt-2">
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let service of services">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title hotel-color">
+              <fa-icon [icon]="service.icon"></fa-icon> {{ service.title }}
+            </h5>
+            <p class="card-text">{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />

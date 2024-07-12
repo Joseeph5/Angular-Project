@@ -3,6 +3,7 @@ import { MainHeaderComponent } from '../../components/main-header/main-header.co
 import { RoomSearchComponent } from '../../components/room-search/room-search.component';
 import { RoomCarouselComponent } from '../../components/room-carousel/room-carousel.component';
 import { CustomParalaxComponent } from '../../components/custom-paralax/custom-paralax.component';
+import { HotelServiceComponent } from '../../components/hotel-service/hotel-service.component';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { CustomParalaxComponent } from '../../components/custom-paralax/custom-p
     RoomSearchComponent,
     RoomCarouselComponent,
     CustomParalaxComponent,
+    HotelServiceComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
