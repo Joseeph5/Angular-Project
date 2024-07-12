@@ -6,6 +6,10 @@ body {
   opacity: 0.9;
 }
 
+.container {
+  padding: 25px !important;
+}
+
 /* Navigation bar definitions */
 .navbar {
   padding: 0;
@@ -98,6 +102,11 @@ body {
   color: #fff;
   font-size: 4rem;
   align-content: center;
+}
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background-color: white;
 }
 
 .parallax {
