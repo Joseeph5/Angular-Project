@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,34 +32,39 @@ export class ProfileComponent implements OnInit {
   message: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
+  constructor(
+    private authService: AuthService,
+    private bookingService: BookingService,
+    private router: Router
+  ) {
     const token = localStorage.getItem('token') || '';
-    const userId = localStorage.getItem('userId') || '';
-
     this.authService.user.subscribe((user) => {
-      debugger;
-      this.authService.getUser(user.sub, token).subscribe({
+      console.log({ user });
+
+      this.authService.getUser(user?.email || user?.sub, token).subscribe({
         next: (userData) => {
+          debugger;
           this.user = userData;
         },
         error: (error) => {
           console.error(error);
         },
       });
-    });
-
-    this.authService.getBookingsByEmail(userId, token).subscribe({
-      next: (response) => {
-        this.bookings = response;
-      },
-      error: (error) => {
-        console.error('Error fetching bookings:', error.message);
-        this.errorMessage = error.message;
-      },
+      this.bookingService
+        .getBookingsByEmail(user?.email || user?.sub, token)
+        .subscribe({
+          next: (response) => {
+            this.bookings = response;
+          },
+          error: (error) => {
+            console.error('Error fetching bookings:', error.message);
+            this.errorMessage = error.message;
+          },
+        });
     });
   }
+
+  ngOnInit(): void {}
 
   handleDeleteAccount(): void {
     const confirmed = window.confirm(

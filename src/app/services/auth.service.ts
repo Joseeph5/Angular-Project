@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this.userSubject.next(null);
   }
 
@@ -54,14 +54,8 @@ export class AuthService {
   }
 
   getUser(email: string, token: string): Observable<any> {
-    debugger;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`http://localhost:9100/users/${email}`, { headers });
-  }
-
-  getBookingsByEmail(email: string, token: string): Observable<any[]> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any[]>(`/api/bookings?email=${email}`, { headers });
   }
 
   deleteUser(userId: string): Observable<any> {
