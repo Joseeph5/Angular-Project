@@ -42,8 +42,6 @@ export class LoginComponent {
       this.authService.loginUser(this.loginForm.value).subscribe({
         next: (success: any) => {
           if (success) {
-            const token = success.token;
-            this.authService.handleLogin(token);
             const redirectUrl =
               this.route.snapshot.queryParams['redirectUrl'] || '/';
             this.router.navigate([redirectUrl], { replaceUrl: true });

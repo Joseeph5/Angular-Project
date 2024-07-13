@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
@@ -13,8 +14,14 @@ export class NavBarComponent implements OnInit {
   showAccount: boolean = false;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  user: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.authService.user.subscribe((user) => {
+      console.log({ user });
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -23,6 +30,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logout(): void {
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.showAccount = false;
   }
 }

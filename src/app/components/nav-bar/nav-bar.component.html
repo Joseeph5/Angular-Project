@@ -51,13 +51,26 @@
             Account
           </a>
 
-          <ul class="dropdown-menu" [class.show]="showAccount">
-            <li *ngIf="isLoggedIn">
-              <a class="dropdown-item" (click)="logout()">Logout</a>
-            </li>
-            <li *ngIf="!isLoggedIn">
-              <a class="dropdown-item" [routerLink]="['/login']">Login</a>
-            </li>
+          <ul
+            class="dropdown-menu"
+            [class.show]="showAccount"
+            aria-labelledby="navbarDropdown"
+          >
+            <ng-container *ngIf="user; else loginLink">
+              <li>
+                <a routerLink="/profile" class="dropdown-item">Profile</a>
+              </li>
+              <li>
+                <a routerLink="/" class="dropdown-item" (click)="logout()"
+                  >Logout</a
+                >
+              </li>
+            </ng-container>
+            <ng-template #loginLink>
+              <li>
+                <a routerLink="/login" class="dropdown-item">Login</a>
+              </li>
+            </ng-template>
           </ul>
         </li>
       </ul>
