@@ -20,6 +20,8 @@ export class NavBarComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       if (user?.roles.includes('ROLE_ADMIN')) {
         this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
       }
       console.log({ user });
       this.user = user;

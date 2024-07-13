@@ -16,8 +16,8 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   isAdmin(): boolean {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user && user.roles && user.roles.includes('ROLE_ADMIN');
+    const user = this.userSubject.getValue();
+    return user?.roles?.includes('ROLE_ADMIN') ?? false;
   }
 
   loginUser(credentials: { email: string; password: string }): Observable<any> {

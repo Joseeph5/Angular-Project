@@ -26,26 +26,26 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'edit-room/:roomId',
     component: EditRoomComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'existing-rooms',
     component: ExistingRoomsComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'existing-bookings',
     component: ExistingBookingsComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'add-room',
     component: AddRoomComponent,
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
 ];
