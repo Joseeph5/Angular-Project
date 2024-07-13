@@ -1,0 +1,69 @@
+<div class="container mt-5 mb-5">
+  <h3 class="text-center mb-5 mt-5">Edit Room</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div *ngIf="successMessage" class="alert alert-success" role="alert">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+      <form [formGroup]="roomForm" (ngSubmit)="handleSubmit()">
+        <div class="mb-3">
+          <label for="roomType" class="form-label hotel-color">Room Type</label>
+          <input
+            type="text"
+            class="form-control"
+            id="roomType"
+            formControlName="roomType"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="roomPrice" class="form-label hotel-color"
+            >Room Price</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="roomPrice"
+            formControlName="roomPrice"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="photo" class="form-label hotel-color">Photo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="photo"
+            formControlName="photo"
+            (input)="handleImageChange($event)"
+          />
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Room preview"
+            style="max-width: 400px; max-height: 400px"
+            class="mt-3"
+          />
+        </div>
+        <div class="d-grid gap-2 d-md-flex mt-2">
+          <button
+            type="button"
+            class="btn btn-outline-info ml-5"
+            (click)="goBack()"
+          >
+            Back
+          </button>
+          <button
+            type="submit"
+            class="btn btn-outline-warning"
+            [disabled]="roomForm.invalid"
+          >
+            Edit Room
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

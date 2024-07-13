@@ -18,6 +18,9 @@ export class NavBarComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) {
     this.authService.user.subscribe((user) => {
+      if (user?.roles.includes('ROLE_ADMIN')) {
+        this.isAdmin = true;
+      }
       console.log({ user });
       this.user = user;
     });

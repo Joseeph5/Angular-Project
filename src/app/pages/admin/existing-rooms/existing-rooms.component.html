@@ -1,0 +1,66 @@
+<div class="container col-md-8 col-lg-6">
+  <p *ngIf="successMessage" class="alert alert-success mt-5">
+    {{ successMessage }}
+  </p>
+  <p *ngIf="errorMessage" class="alert alert-danger mt-5">{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="isLoading">Loading existing rooms...</div>
+
+<section *ngIf="!isLoading" class="mt-5 mb-5 container">
+  <div class="d-flex justify-content-between mb-3 mt-5">
+    <h2>Existing Rooms</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-2 md-mb-0">
+      <!-- <app-room-filter
+        (roomTypeSelected)="onRoomTypeSelected($event)"
+      ></app-room-filter> -->
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <a [routerLink]="['/add-room']">
+        <fa-icon [icon]="faPlus"></fa-icon> Add Room
+      </a>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="text-center">
+        <th>ID</th>
+        <th>Room Type</th>
+        <th>Room Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let room of getCurrentRooms()" class="text-center">
+        <td>{{ room.id }}</td>
+        <td>{{ room.roomType }}</td>
+        <td>{{ room.roomPrice }}</td>
+        <td class="gap-2">
+          <a [routerLink]="['/edit-room', room.id]" class="gap-2">
+            <button class="btn btn-info btn-sm">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+            <button class="btn btn-warning btn-sm ml-5">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </button>
+          </a>
+          <button
+            class="btn btn-danger btn-sm ml-5"
+            (click)="handleDelete(room.id)"
+          >
+            <fa-icon [icon]="faTrashAlt"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <app-room-paginator
+    [currentPage]="currentPage"
+    [totalPages]="calculateTotalPages()"
+    (pageChange)="handlePaginationClick($event)"
+  ></app-room-paginator> -->
+</section>

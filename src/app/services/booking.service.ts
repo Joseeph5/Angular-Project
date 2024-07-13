@@ -20,12 +20,18 @@ export class BookingService {
     return this.http.get<any>(`${this.apiUrl}/confirmation/${code}`);
   }
 
-  cancelBooking(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`);
+  cancelBooking(id: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.apiUrl}/delete/${id}`, { headers });
   }
 
   getBookingsByEmail(email: string, token: string): Observable<any[]> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/user/${email}`, { headers });
+  }
+
+  getAllBookings(token: string): Observable<any[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/all-bookings`, { headers });
   }
 }

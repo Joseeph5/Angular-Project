@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
 
       this.authService.getUser(user?.email || user?.sub, token).subscribe({
         next: (userData) => {
-          debugger;
           this.user = userData;
         },
         error: (error) => {

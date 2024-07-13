@@ -68,9 +68,9 @@ export class FindBookingComponent {
 
   handleBookingCancellation(): void {
     if (!this.bookingInfo) return;
-
+    const token = localStorage.getItem('token') || '';
     this.bookingService
-      .cancelBooking(this.bookingInfo.id)
+      .cancelBooking(this.bookingInfo.id, token)
       .pipe(
         catchError((error) => {
           this.error = error.message;

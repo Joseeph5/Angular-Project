@@ -15,6 +15,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user && user.roles && user.roles.includes('ROLE_ADMIN');
+  }
+
   loginUser(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response) => {

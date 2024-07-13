@@ -1,0 +1,10 @@
+<section style="background-color: whitesmoke">
+  <!-- <app-header [title]="'Existing Bookings'"></app-header> -->
+  <div *ngIf="error" class="text-danger">{{ error }}</div>
+  <div *ngIf="isLoading">Loading existing bookings...</div>
+  <app-bookings-table
+    *ngIf="!isLoading"
+    [bookingInfo]="bookingInfo"
+    (bookingCancellation)="handleBookingCancellation($event)"
+  ></app-bookings-table>
+</section>

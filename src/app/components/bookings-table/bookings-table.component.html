@@ -1,0 +1,51 @@
+<section class="p-4">
+  <!-- <app-date-slider
+    (dateChange)="filterBookings($event.startDate, $event.endDate)"
+  ></app-date-slider> -->
+  <table class="table table-bordered table-hover shadow">
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>Booking ID</th>
+        <th>Room ID</th>
+        <th>Room Type</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>Guest Name</th>
+        <th>Guest Email</th>
+        <th>Adults</th>
+        <th>Children</th>
+        <th>Total Guest</th>
+        <th>Confirmation Code</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let booking of filteredBookings; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.room.id }}</td>
+        <td>{{ booking.room.roomType }}</td>
+        <td>{{ booking.checkInDate }}</td>
+        <td>{{ booking.checkOutDate }}</td>
+        <td>{{ booking.guestName }}</td>
+        <td>{{ booking.guestEmail }}</td>
+        <td>{{ booking.numOfAdults }}</td>
+        <td>{{ booking.numOfChildren }}</td>
+        <td>{{ booking.totalNumOfGuests }}</td>
+        <td>{{ booking.bookingConfirmationCode }}</td>
+        <td>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="handleBookingCancellation(booking.id)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="filteredBookings.length === 0">
+    No booking found for the selected dates
+  </p>
+</section>

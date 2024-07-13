@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,33 @@ export class RoomService {
 
   getRoomById(id: string): Observable<any> {
     return this.http.get<any>(`${this.url}/room/${id}`);
+  }
+
+  deleteRoom(roomId: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http
+      .delete(`${this.url}/room/delete/${roomId}`, { headers })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error deleting room:', error);
+          throw error;
+        })
+      );
+  }
+
+  updateRoom(roomId: string, roomData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.url}/update/${roomId}`, roomData, {
+      observe: 'response',
+      headers: headers,
+    });
+  }
+
+  addRoom(
+    room: { photo: string; roomType: string; roomPrice: number },
+    token: string
+  ): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.url}/add-room`, room, { headers });
   }
 }

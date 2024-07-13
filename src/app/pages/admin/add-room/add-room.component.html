@@ -1,0 +1,66 @@
+<section class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h2 class="mt-5 mb-2">Add a New Room</h2>
+      <div *ngIf="successMessage" class="alert alert-success fade show">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger fade show">
+        {{ errorMessage }}
+      </div>
+
+      <form [formGroup]="roomForm" (ngSubmit)="handleSubmit()">
+        <div class="mb-3">
+          <label for="roomType" class="form-label">Room Type</label>
+          <input
+            type="text"
+            class="form-control"
+            id="roomType"
+            formControlName="roomType"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="roomPrice" class="form-label">Room Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="roomPrice"
+            formControlName="roomPrice"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="photo" class="form-label">Room Photo</label>
+          <input
+            name="photo"
+            id="photo"
+            type="text"
+            class="form-control"
+            (input)="handleImageChange($event)"
+            formControlName="photo"
+          />
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Preview room photo"
+            style="max-width: 400px; max-height: 400px"
+            class="mb-3"
+          />
+        </div>
+        <div class="d-grid gap-2 d-md-flex mt-2">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            (click)="router.navigate(['/existing-rooms'])"
+          >
+            Existing rooms
+          </button>
+          <button type="submit" class="btn btn-outline-primary ml-5">
+            Save Room
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
